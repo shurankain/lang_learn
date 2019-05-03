@@ -9,12 +9,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import hello.Word;
 
 @Service
 public class WordService {
+
+    private Logger logger = LoggerFactory.getLogger(WordService.class);
 
     private static final String FILE_NAME = "dictionary.txt";
     private Map<String, String> wordsCache = new HashMap<>();
@@ -28,9 +32,9 @@ public class WordService {
                 "".equals(word.getForeign().trim()) || "".equals(word.getTranslation().trim())) {
             return "Invalid value!";
         } else {
-            if(wordsCache.containsKey(word.getForeign())){
+            if (wordsCache.containsKey(word.getForeign())) {
                 return "Exists!";
-            }else {
+            } else {
                 saveWord(word);
                 return "Added!";
             }
@@ -40,11 +44,11 @@ public class WordService {
     private void saveWord(Word word) {
         wordsCache.put(word.getForeign(), word.getTranslation());
 
-        File file = new File("dictionary.txt");
+        File file = new File(FILE_NAME);
         try (FileWriter fr = new FileWriter(file, true)) {
             fr.write(word.getForeign() + "=" + word.getTranslation() + "\n");
         } catch (IOException e) {
-            System.err.println("Error save to file: " + Arrays.toString(e.getStackTrace()));
+            logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -63,7 +67,7 @@ public class WordService {
                     line = reader.readLine();
                 }
             } catch (IOException e) {
-                System.err.println("Error read from file: " + Arrays.toString(e.getStackTrace()));
+                logger.debug("Error read from file: {}", Arrays.toString(e.getStackTrace()));
             }
         }
     }

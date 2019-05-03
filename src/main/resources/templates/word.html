@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Add new word:</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -9,7 +9,7 @@
 <form action="#" th:action="@{/word}" th:object="${word}" method="post">
     <p>Foreign: <input type="text" th:field="*{foreign}"/></p>
     <p>Translation: <input type="text" th:field="*{translation}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    <p><input type="submit" value="Add"/> <input type="reset" value="Reset"/></p>
 </form>
 <div>
     <h2>

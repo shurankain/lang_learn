@@ -29,7 +29,7 @@ public class WordController {
     @PostMapping("/word")
     public String wordSubmit(@ModelAttribute Word word, Model model) {
         model.addAttribute("word", new Word());
-            model.addAttribute("info", wordService.processWordSaving(word));
+        model.addAttribute("info", wordService.processWordSaving(word));
         return "word";
     }
 
