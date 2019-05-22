@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>One of four</title>
+    <link rel="stylesheet" th:href="@{/css/fourWords.css}" />
+</head>
+<body>
+    in development =)
+    <div>
+        <h2>
+            <span th:if="${question != null}" th:text="'Question: ' + ${question}"></span>
+        </h2>
+        <h2>
+            <span th:if="${answer != null}" th:text="'Answer: ' + ${answer}"></span>
+        </h2>
+        <h2>
+            <span th:if="${wrong1 != null}" th:text="'Wrong1: ' + ${wrong1}"></span>
+        </h2>
+        <h2>
+            <span th:if="${wrong2 != null}" th:text="'Wrong1: ' + ${wrong2}"></span>
+        </h2>
+        <h2>
+            <span th:if="${wrong3 != null}" th:text="'Wrong1: ' + ${wrong3}"></span>
+        </h2>
+    </div>
+</body>
+</html>

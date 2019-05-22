@@ -27,6 +27,10 @@ public class WordService {
         fillCacheFromFile();
     }
 
+    public Map<String, String> getWordsCache() {
+        return wordsCache;
+    }
+
     public String processWordSaving(Word word) {
         if (word == null || word.getForeign() == null ||
                 "".equals(word.getForeign().trim()) || "".equals(word.getTranslation().trim())) {
