@@ -38,7 +38,7 @@ public class FourWordsController {
         if(outDto.getSelectedValue().equals(currentWords.getAnswer())){
             info = "Correct!";
         }else {
-            info = "Wrong!" + currentWords.getQuestion() + " = " + currentWords.getAnswer();
+            info = "Wrong! " + currentWords.getQuestion() + " = " + currentWords.getAnswer();
         }
 
         model.addAttribute("wordsDto", currentWords);
