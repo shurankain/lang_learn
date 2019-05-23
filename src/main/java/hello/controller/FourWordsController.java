@@ -1,13 +1,13 @@
 package hello.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import hello.Word;
+import hello.model.FourWordsDto;
 import hello.service.FourWordsService;
 
 @Controller
@@ -20,18 +20,29 @@ public class FourWordsController {
         this.fourWordsService = fourWordsService;
     }
 
+    private FourWordsDto currentWords;
+
+
     @GetMapping("/fourWords")
     public String wordForm(Model model) {
-        model.addAttribute("word", new Word()); //Add existing words
+        FourWordsDto fourWordsDto = fourWordsService.getFourWords();
+        model.addAttribute("wordsDto", fourWordsDto);
+        currentWords = fourWordsDto;
+        return "fourWords";
+    }
 
-        List<Word> wordList = fourWordsService.getFourWords();
-        if(wordList.size() == 4){
-            model.addAttribute("question", wordList.get(0).getForeign());
-            model.addAttribute("answer", wordList.get(0).getTranslation());
-            model.addAttribute("wrong1", wordList.get(1).getTranslation());
-            model.addAttribute("wrong2", wordList.get(2).getTranslation());
-            model.addAttribute("wrong3", wordList.get(3).getTranslation());
+    @PostMapping("/fourWords/check")
+    public String checkForm(@ModelAttribute("outDto") FourWordsDto outDto,
+                            Model model) {
+        String info;
+        if(outDto.getSelectedValue().equals(currentWords.getAnswer())){
+            info = "Correct!";
+        }else {
+            info = "Wrong!" + currentWords.getQuestion() + " = " + currentWords.getAnswer();
         }
+
+        model.addAttribute("wordsDto", currentWords);
+        model.addAttribute("info", info);
         return "fourWords";
     }
 }

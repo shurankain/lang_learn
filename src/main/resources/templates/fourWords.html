@@ -3,26 +3,49 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>One of four</title>
-    <link rel="stylesheet" th:href="@{/css/fourWords.css}" />
+    <link rel="stylesheet" th:href="@{/css/fourWords.css}"/>
 </head>
 <body>
-    in development =)
-    <div>
-        <h2>
-            <span th:if="${question != null}" th:text="'Question: ' + ${question}"></span>
-        </h2>
-        <h2>
-            <span th:if="${answer != null}" th:text="'Answer: ' + ${answer}"></span>
-        </h2>
-        <h2>
-            <span th:if="${wrong1 != null}" th:text="'Wrong1: ' + ${wrong1}"></span>
-        </h2>
-        <h2>
-            <span th:if="${wrong2 != null}" th:text="'Wrong1: ' + ${wrong2}"></span>
-        </h2>
-        <h2>
-            <span th:if="${wrong3 != null}" th:text="'Wrong1: ' + ${wrong3}"></span>
-        </h2>
-    </div>
+<p>Choose one: </p>
+<div>
+    <!--<form action="#" th:action="@{/fourWords/check}" method="post">
+        <p th:text="${question}"></p>
+        <ul style="list-style-type: none">
+            <li>
+                <input type="radio" name="word" id="opt1" value="0"><label for="opt1" th:text="${words.get(0)}"></label><br>
+            </li>
+            <li>
+                <input type="radio" name="word" id="opt2" value="1"><label for="opt2" th:text="${words.get(1)}"></label><br>
+            </li>
+            <li>
+                <input type="radio" name="word" id="opt3" value="2"><label for="opt3" th:text="${words.get(2)}"></label><br>
+            </li>
+            <li>
+                <input type="radio" name="word" id="opt4" value="3"><label for="opt4" th:text="${words.get(3)}"></label><br>
+            </li>
+        </ul>
+        <br>
+        <input type="submit" value="Check"/>
+    </form>-->
+    <form th:object="${outDto}" th:action="@{/fourWords/check}" method="post">
+        <p th:text="${wordsDto.question}"></p>
+        <ul>
+            <li th:each="word : ${wordsDto.options}">
+                <input type="radio" th:field="${wordsDto.selectedValue}" th:attr="outDto = ${wordsDto}" th:id="${word}" th:value="${word}"/>
+                <label th:for="${word}" th:text="${word}"></label>
+            </li>
+        </ul>
+        <br>
+        <input type="submit" value="Check"/><input type="reset" value="Reset"/>
+    </form>
+</div>
+<div>
+    <h2>
+        <span th:if="${info != null}" th:text="'Info: ' + ${info}"></span>
+    </h2>
+    <form th:if="${info != null}" action="#" th:action="@{/fourWords}" method="get">
+        <input type="submit" value="next ->"/>
+    </form>
+</div>
 </body>
 </html>

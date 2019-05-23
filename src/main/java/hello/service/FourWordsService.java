@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hello.Word;
+import hello.model.FourWordsDto;
 
 @Service
 public class FourWordsService {
@@ -23,10 +24,12 @@ public class FourWordsService {
         this.wordService = wordService;
     }
 
-    public List<Word> getFourWords(){
+    public FourWordsDto getFourWords(){
         Map<String, String> wordsCache = wordService.getWordsCache();
+        FourWordsDto fourWordsDto = new FourWordsDto();
+
         if(wordsCache.size() < 4){
-            return Collections.emptyList();
+            return fourWordsDto;
         }
         List<Word> words = new ArrayList<>();
         List<String> cacheKeysList = new ArrayList<>(wordsCache.keySet());
@@ -40,6 +43,14 @@ public class FourWordsService {
                 words.add(extractedWord);
             }
         }
-        return words;
+        List<String> transalations = new ArrayList<>();
+        fourWordsDto.setQuestion(words.get(0).getForeign());
+        fourWordsDto.setAnswer(words.get(0).getTranslation());
+        Collections.shuffle(words);
+        words.forEach(w -> transalations.add(w.getTranslation()));
+
+
+        fourWordsDto.setOptions(transalations);
+        return fourWordsDto;
     }
 }
