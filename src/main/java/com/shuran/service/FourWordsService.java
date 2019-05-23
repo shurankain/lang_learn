@@ -1,4 +1,4 @@
-package hello.service;
+package com.shuran.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +9,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hello.Word;
-import hello.model.FourWordsDto;
+import com.shuran.Word;
+import com.shuran.model.FourWordsDto;
 
 @Service
 public class FourWordsService {

@@ -1,4 +1,4 @@
-package hello.controller;
+package com.shuran.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import hello.model.FourWordsDto;
-import hello.service.FourWordsService;
+import com.shuran.model.FourWordsDto;
+import com.shuran.service.FourWordsService;
 
 @Controller
 public class FourWordsController {

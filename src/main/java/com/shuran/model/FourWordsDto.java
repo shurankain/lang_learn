@@ -1,4 +1,4 @@
-package hello.model;
+package com.shuran.model;
 
 import java.util.List;
 
