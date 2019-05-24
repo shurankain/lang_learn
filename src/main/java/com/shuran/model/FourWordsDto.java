@@ -4,25 +4,25 @@ import java.util.List;
 
 public class FourWordsDto {
 
-    private String question;
-    private String answer;
+    private String foreign;
+    private String translation;
     private List<String> options;
     private String selectedValue;
 
-    public String getQuestion() {
-        return question;
+    public String getForeign() {
+        return foreign;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setForeign(String foreign) {
+        this.foreign = foreign;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getTranslation() {
+        return translation;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setTranslation(String translation) {
+        this.translation = translation;
     }
 
     public List<String> getOptions() {

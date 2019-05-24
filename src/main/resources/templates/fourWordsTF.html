@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>One of four</title>
+    <link rel="stylesheet" th:href="@{/css/fourWords.css}"/>
+</head>
+<body>
+<p>Choose one: </p>
+<div>
+    <form th:object="${outDto}" th:action="@{/fourWords/checkTF}" method="post">
+        <p th:text="${wordsDto.translation}"></p>
+        <ul>
+            <li th:each="word : ${wordsDto.options}">
+                <input type="radio" th:field="${wordsDto.selectedValue}" th:attr="outDto = ${wordsDto}" th:id="${word}" th:value="${word}"/>
+                <label th:for="${word}" th:text="${word}"></label>
+            </li>
+        </ul>
+        <br>
+        <input type="submit" value="Check"/><input type="reset" value="Reset"/>
+    </form>
+    <form action="#" th:action="@{/fourWords/TF}" method="get">
+        <input type="submit" value="next ->"/>
+    </form>
+</div>
+<div>
+    <h2>
+        <span th:if="${info != null}" th:text="'Info: ' + ${info}"></span>
+    </h2>
+</div>
+</body>
+</html>

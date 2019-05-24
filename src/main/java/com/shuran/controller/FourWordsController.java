@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.shuran.model.ExerciseType;
 import com.shuran.model.FourWordsDto;
 import com.shuran.service.FourWordsService;
 
 @Controller
 public class FourWordsController {
 
+    public static final String WORDS_DTO = "wordsDto";
     private FourWordsService fourWordsService;
 
     @Autowired
@@ -23,26 +25,49 @@ public class FourWordsController {
     private FourWordsDto currentWords;
 
 
-    @GetMapping("/fourWords")
-    public String wordForm(Model model) {
-        FourWordsDto fourWordsDto = fourWordsService.getFourWords();
-        model.addAttribute("wordsDto", fourWordsDto);
+    @GetMapping("/fourWords/FT")
+    public String wordFormFT(Model model) {
+        FourWordsDto fourWordsDto = fourWordsService.getFourWords(ExerciseType.FT);
+        model.addAttribute(WORDS_DTO, fourWordsDto);
         currentWords = fourWordsDto;
-        return "fourWords";
+        return "fourWordsFT";
     }
 
-    @PostMapping("/fourWords/check")
-    public String checkForm(@ModelAttribute("outDto") FourWordsDto outDto,
+    @GetMapping("/fourWords/TF")
+    public String wordFormTF(Model model) {
+        FourWordsDto fourWordsDto = fourWordsService.getFourWords(ExerciseType.TF);
+        model.addAttribute(WORDS_DTO, fourWordsDto);
+        currentWords = fourWordsDto;
+        return "fourWordsTF";
+    }
+
+    @PostMapping("/fourWords/checkFT")
+    public String checkFormFT(@ModelAttribute("outDto") FourWordsDto outDto,
                             Model model) {
         String info;
-        if(outDto.getSelectedValue().equals(currentWords.getAnswer())){
+        if(outDto.getSelectedValue().equals(currentWords.getTranslation())){
             info = "Correct!";
         }else {
-            info = "Wrong! " + currentWords.getQuestion() + " = " + currentWords.getAnswer();
+            info = "Wrong! " + currentWords.getForeign() + " = " + currentWords.getTranslation();
         }
 
-        model.addAttribute("wordsDto", currentWords);
+        model.addAttribute(WORDS_DTO, currentWords);
         model.addAttribute("info", info);
-        return "fourWords";
+        return "fourWordsFT";
+    }
+
+    @PostMapping("/fourWords/checkTF")
+    public String checkFormTF(@ModelAttribute("outDto") FourWordsDto outDto,
+                            Model model) {
+        String info;
+        if(outDto.getSelectedValue().equals(currentWords.getForeign())){
+            info = "Correct!";
+        }else {
+            info = "Wrong! " + currentWords.getTranslation() + " = " + currentWords.getForeign();
+        }
+
+        model.addAttribute(WORDS_DTO, currentWords);
+        model.addAttribute("info", info);
+        return "fourWordsTF";
     }
 }

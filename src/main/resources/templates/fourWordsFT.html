@@ -8,8 +8,8 @@
 <body>
 <p>Choose one: </p>
 <div>
-    <form th:object="${outDto}" th:action="@{/fourWords/check}" method="post">
-        <p th:text="${wordsDto.question}"></p>
+    <form th:object="${outDto}" th:action="@{/fourWords/checkFT}" method="post">
+        <p th:text="${wordsDto.foreign}"></p>
         <ul>
             <li th:each="word : ${wordsDto.options}">
                 <input type="radio" th:field="${wordsDto.selectedValue}" th:attr="outDto = ${wordsDto}" th:id="${word}" th:value="${word}"/>
@@ -19,7 +19,7 @@
         <br>
         <input type="submit" value="Check"/><input type="reset" value="Reset"/>
     </form>
-    <form action="#" th:action="@{/fourWords}" method="get">
+    <form action="#" th:action="@{/fourWords/FT}" method="get">
         <input type="submit" value="next ->"/>
     </form>
 </div>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shuran.Word;
+import com.shuran.model.ExerciseType;
 import com.shuran.model.FourWordsDto;
 
 @Service
@@ -24,7 +25,7 @@ public class FourWordsService {
         this.wordService = wordService;
     }
 
-    public FourWordsDto getFourWords(){
+    public FourWordsDto getFourWords(ExerciseType exerciseType){
         Map<String, String> wordsCache = wordService.getWordsCache();
         FourWordsDto fourWordsDto = new FourWordsDto();
 
@@ -44,11 +45,15 @@ public class FourWordsService {
             }
         }
         List<String> transalations = new ArrayList<>();
-        fourWordsDto.setQuestion(words.get(0).getForeign());
-        fourWordsDto.setAnswer(words.get(0).getTranslation());
+        fourWordsDto.setForeign(words.get(0).getForeign());
+        fourWordsDto.setTranslation(words.get(0).getTranslation());
         Collections.shuffle(words);
-        words.forEach(w -> transalations.add(w.getTranslation()));
-
+        if(ExerciseType.FT == exerciseType){
+            words.forEach(w -> transalations.add(w.getTranslation()));
+        }
+        if(ExerciseType.TF == exerciseType){
+            words.forEach(w -> transalations.add(w.getForeign()));
+        }
 
         fourWordsDto.setOptions(transalations);
         return fourWordsDto;
