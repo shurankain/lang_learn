@@ -8,6 +8,7 @@
 <body>
 <div>
     <span class="button questions" th:text="${wordsDto.getTranslation()}"></span><br>
+
     <a class="option-button answers" href="/fourWords/checkTF?option=0">
         <span th:text="${wordsDto.getOptions().get(0)}"></span>
     </a><br>
@@ -20,12 +21,13 @@
     <a class="option-button answers" href="/fourWords/checkTF?option=3">
         <span th:text="${wordsDto.getOptions().get(3)}"></span>
     </a><br>
-    <br>
-    <a class="button options" href="/fourWords/TF">next -></a>
+    <a class="button options" href="/fourWords/TF">next -></a><br/>
+    <a class="nav" href="/">main menu</a>
+    <a class="nav" href="/fourWords/FT">switch lang</a>
 </div>
 <div>
     <h2>
-        <span th:if="${info != null}" th:text="'Info: ' + ${info}"></span>
+        <span class="info" th:if="${info != null}" th:text="'Info: ' + ${info}"></span>
     </h2>
 </div>
 </body>
