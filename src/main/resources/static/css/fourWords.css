@@ -1,16 +1,33 @@
 body {
     background-color: antiquewhite;
-    font-size: 300%;
+    text-align: center;
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10%;
+
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 22px;
+    margin: 5px;
+    width: 25%;
+
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
+}
+
+.questions {
+    background-color: #459faf;
+}
+
+.answers {
+    background-color: #4CAF50;
+}
+
+.options {
+    background-color: #838383;
 }
 
