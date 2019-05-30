@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shuran.model.ExerciseType;
 import com.shuran.model.FourWordsDto;
@@ -41,13 +40,12 @@ public class FourWordsController {
         return "fourWordsTF";
     }
 
-    @PostMapping("/fourWords/checkFT")
-    public String checkFormFT(@ModelAttribute("outDto") FourWordsDto outDto,
-                            Model model) {
+    @GetMapping("/fourWords/checkFT")
+    public String checkFormFT(@RequestParam("option") Integer selectedOpt, Model model) {
         String info;
-        if(outDto.getSelectedValue().equals(currentWords.getTranslation())){
-            info = "Correct!";
-        }else {
+        if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getTranslation())) {
+            return wordFormFT(model);
+        } else {
             info = "Wrong! " + currentWords.getForeign() + " = " + currentWords.getTranslation();
         }
 
@@ -56,13 +54,12 @@ public class FourWordsController {
         return "fourWordsFT";
     }
 
-    @PostMapping("/fourWords/checkTF")
-    public String checkFormTF(@ModelAttribute("outDto") FourWordsDto outDto,
-                            Model model) {
+    @GetMapping("/fourWords/checkTF")
+    public String checkFormTF(@RequestParam("option") Integer selectedOpt, Model model) {
         String info;
-        if(outDto.getSelectedValue().equals(currentWords.getForeign())){
-            info = "Correct!";
-        }else {
+        if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getForeign())) {
+            return wordFormFT(model);
+        } else {
             info = "Wrong! " + currentWords.getTranslation() + " = " + currentWords.getForeign();
         }
 

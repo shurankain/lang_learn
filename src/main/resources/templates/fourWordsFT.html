@@ -6,20 +6,22 @@
     <link rel="stylesheet" th:href="@{/css/fourWords.css}"/>
 </head>
 <body>
-<p>Choose one: </p>
 <div>
-    <form th:object="${outDto}" th:action="@{/fourWords/checkFT}" method="post">
-        <p th:text="${wordsDto.foreign}"></p>
-        <ul>
-            <li th:each="word : ${wordsDto.options}">
-                <input type="radio" th:field="${wordsDto.selectedValue}" th:attr="outDto = ${wordsDto}" th:id="${word}" th:value="${word}"/>
-                <label th:for="${word}" th:text="${word}"></label>
-            </li>
-        </ul>
-        <br>
-        <input class="button" type="submit" value="Check"/>
-        <a class="button" href="/fourWords/FT">next -></a>
-    </form>
+    <span class="button questions" th:text="${wordsDto.getForeign()}"></span><br>
+    <a class="button answers" href="/fourWords/checkFT?option=0">
+        <span th:text="${wordsDto.getOptions().get(0)}"></span>
+    </a><br>
+    <a class="button answers" href="/fourWords/checkFT?option=1">
+        <span th:text="${wordsDto.getOptions().get(1)}"></span>
+    </a><br>
+    <a class="button answers" href="/fourWords/checkFT?option=2">
+        <span th:text="${wordsDto.getOptions().get(2)}"></span>
+    </a><br>
+    <a class="button answers" href="/fourWords/checkFT?option=3">
+        <span th:text="${wordsDto.getOptions().get(3)}"></span>
+    </a><br>
+    <br>
+    <a class="button options" href="/fourWords/FT">next -></a>
 </div>
 <div>
     <h2>
