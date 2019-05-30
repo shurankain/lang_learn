@@ -51,7 +51,7 @@ body {
     background-color: #4CAF50;
 }
 
-.options {
+.next-button {
     background-color: #838383;
 }
 
@@ -80,21 +80,31 @@ body {
 
 @media (max-device-width: 1200px){
     /* For mobile phones: */
+    .next-button{
+        margin-top: 20px;
+    }
+
+    .questions{
+        margin-bottom: 20px;
+    }
 
     .button{
         font-size: 60px;
+        padding: 20px 10px;
         width: 90%;
-        height: 90px;
+        height: auto;
     }
 
     .option-button {
         font-size: 60px;
+        padding: 20px 10px;
         width: 90%;
-        height: 90px;
+        height: auto;
     }
 
     .nav {
         font-size: 60px;
+        padding: 20px 10px;
         width: 44%;
         height: 90px;
     }
