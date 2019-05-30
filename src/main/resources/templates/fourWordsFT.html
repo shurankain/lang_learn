@@ -8,16 +8,16 @@
 <body>
 <div>
     <span class="button questions" th:text="${wordsDto.getForeign()}"></span><br>
-    <a class="button answers" href="/fourWords/checkFT?option=0">
+    <a class="option-button answers" href="/fourWords/checkFT?option=0">
         <span th:text="${wordsDto.getOptions().get(0)}"></span>
     </a><br>
-    <a class="button answers" href="/fourWords/checkFT?option=1">
+    <a class="option-button answers" href="/fourWords/checkFT?option=1">
         <span th:text="${wordsDto.getOptions().get(1)}"></span>
     </a><br>
-    <a class="button answers" href="/fourWords/checkFT?option=2">
+    <a class="option-button answers" href="/fourWords/checkFT?option=2">
         <span th:text="${wordsDto.getOptions().get(2)}"></span>
     </a><br>
-    <a class="button answers" href="/fourWords/checkFT?option=3">
+    <a class="option-button answers" href="/fourWords/checkFT?option=3">
         <span th:text="${wordsDto.getOptions().get(3)}"></span>
     </a><br>
     <br>

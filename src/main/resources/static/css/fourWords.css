@@ -19,6 +19,30 @@ body {
     font-size: 16px;
 }
 
+.option-button {
+    justify-content: center;
+    display: inline-block;
+    border-radius: 10%;
+
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    margin: 5px;
+    width: 25%;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.option-button:hover {background-color: #3e8e41}
+
+.option-button:active {
+    background-color: #3e8e41;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+    transform: translate(1px, 1px);
+}
+
 .questions {
     background-color: #459faf;
 }
