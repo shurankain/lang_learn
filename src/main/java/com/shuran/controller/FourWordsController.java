@@ -58,7 +58,7 @@ public class FourWordsController {
     public String checkFormTF(@RequestParam("option") Integer selectedOpt, Model model) {
         String info;
         if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getForeign())) {
-            return wordFormFT(model);
+            return wordFormTF(model);
         } else {
             info = "Wrong! " + currentWords.getTranslation() + " = " + currentWords.getForeign();
         }
