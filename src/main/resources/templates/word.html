@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
     <title>Word adder</title>
     <link rel="stylesheet" th:href="@{/css/word.css}" />
@@ -8,8 +8,12 @@
 <body>
 <h1>Form</h1>
 <form action="#" th:action="@{/word}" th:object="${word}" method="post">
-    <p>Foreign: <input type="text" th:field="*{foreign}"/></p>
-    <p>Translation: <input type="text" th:field="*{translation}"/></p>
+    <p>Foreign: <label>
+        <input type="text" th:field="*{foreign}"/>
+    </label></p>
+    <p>Translation: <label>
+        <input type="text" th:field="*{translation}"/>
+    </label></p>
     <p><input type="submit" value="Add"/> <input type="reset" value="Reset"/></p>
 </form>
 <div>

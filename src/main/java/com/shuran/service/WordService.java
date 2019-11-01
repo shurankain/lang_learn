@@ -27,7 +27,7 @@ public class WordService {
         fillCacheFromFile();
     }
 
-    public Map<String, String> getWordsCache() {
+    Map<String, String> getWordsCache() {
         return wordsCache;
     }
 

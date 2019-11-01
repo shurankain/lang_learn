@@ -1,5 +1,6 @@
 package com.shuran;
 
+@SuppressWarnings("unused")
 public class Word {
 
     private long id;

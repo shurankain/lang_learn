@@ -13,7 +13,7 @@ import com.shuran.service.FourWordsService;
 @Controller
 public class FourWordsController {
 
-    public static final String WORDS_DTO = "wordsDto";
+    private static final String WORDS_DTO = "wordsDto";
     private FourWordsService fourWordsService;
 
     @Autowired

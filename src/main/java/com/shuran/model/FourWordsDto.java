@@ -2,6 +2,7 @@ package com.shuran.model;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class FourWordsDto {
 
     private String foreign;
