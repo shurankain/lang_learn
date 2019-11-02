@@ -1,19 +1,14 @@
 package com.shuran.service;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.shuran.Word;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.shuran.Word;
+import java.io.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class WordService {
@@ -63,6 +58,7 @@ public class WordService {
                  BufferedReader reader = new BufferedReader(fileReader)) {
 
                 String line = reader.readLine();
+                cleanWordsCache();
                 while (line != null) {
                     String[] values = line.split("=");
                     if (values.length == 2) {
@@ -74,5 +70,9 @@ public class WordService {
                 logger.debug("Error read from file: {}", Arrays.toString(e.getStackTrace()));
             }
         }
+    }
+
+    private void cleanWordsCache() {
+        wordsCache = new HashMap<>();
     }
 }

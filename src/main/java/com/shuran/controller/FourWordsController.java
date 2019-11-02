@@ -1,14 +1,13 @@
 package com.shuran.controller;
 
+import com.shuran.model.ExerciseType;
+import com.shuran.model.FourWordsDto;
+import com.shuran.service.FourWordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.shuran.model.ExerciseType;
-import com.shuran.model.FourWordsDto;
-import com.shuran.service.FourWordsService;
 
 @Controller
 public class FourWordsController {
@@ -44,6 +43,7 @@ public class FourWordsController {
     public String checkFormFT(@RequestParam("option") Integer selectedOpt, Model model) {
         String info;
         if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getTranslation())) {
+            fourWordsService.removeCorrectWordFromCache(currentWords.getForeign());
             return wordFormFT(model);
         } else {
             info = "Wrong! " + currentWords.getForeign() + " = " + currentWords.getTranslation();
@@ -58,6 +58,7 @@ public class FourWordsController {
     public String checkFormTF(@RequestParam("option") Integer selectedOpt, Model model) {
         String info;
         if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getForeign())) {
+            fourWordsService.removeCorrectWordFromCache(currentWords.getForeign());
             return wordFormTF(model);
         } else {
             info = "Wrong! " + currentWords.getTranslation() + " = " + currentWords.getForeign();
