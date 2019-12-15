@@ -31,6 +31,7 @@ public class WordService {
                 "".equals(word.getForeign().trim()) || "".equals(word.getTranslation().trim())) {
             return "Invalid value!";
         } else {
+            fillCacheFromFile(); //reloads words on each adding.
             if (wordsCache.containsKey(word.getForeign())) {
                 return "Exists!";
             } else {
@@ -51,7 +52,7 @@ public class WordService {
         }
     }
 
-    private void fillCacheFromFile() {
+    public void fillCacheFromFile() {
         File file = new File(FILE_NAME);
         if (file.exists()) {
             try (FileReader fileReader = new FileReader(FILE_NAME);
