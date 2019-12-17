@@ -3,6 +3,7 @@ package com.shuran.controller;
 import com.shuran.model.ExerciseType;
 import com.shuran.model.FourWordsDto;
 import com.shuran.service.FourWordsService;
+import com.shuran.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ public class FourWordsController {
 
     private static final String WORDS_DTO = "wordsDto";
     private FourWordsService fourWordsService;
+    private WordService wordService;
 
     @Autowired
-    public FourWordsController(FourWordsService fourWordsService) {
+    public FourWordsController(FourWordsService fourWordsService, WordService wordService) {
         this.fourWordsService = fourWordsService;
+        this.wordService = wordService;
     }
 
     private FourWordsDto currentWords;
@@ -44,6 +47,7 @@ public class FourWordsController {
         String info;
         if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getTranslation())) {
             fourWordsService.removeCorrectWordFromCache(currentWords.getForeign());
+            wordService.addOrIncrementWordInBlackList(currentWords.getForeign());
             return wordFormFT(model);
         } else {
             info = "Wrong! " + currentWords.getForeign() + " = " + currentWords.getTranslation();
@@ -59,6 +63,7 @@ public class FourWordsController {
         String info;
         if (currentWords.getOptions().get(selectedOpt).equals(currentWords.getForeign())) {
             fourWordsService.removeCorrectWordFromCache(currentWords.getForeign());
+            wordService.addOrIncrementWordInBlackList(currentWords.getForeign());
             return wordFormTF(model);
         } else {
             info = "Wrong! " + currentWords.getTranslation() + " = " + currentWords.getForeign();
