@@ -1,7 +1,0 @@
-brak=1
-kuchenka=1
-zapalenie oskrzeli=1
-jęczmień=1
-ssać=1
-sprzedawca=1
-herbatnik=1
