@@ -75,7 +75,7 @@ public class WordService {
         file.createNewFile();
         try (FileWriter fr = new FileWriter(file, true)) {
             for (String key : wordsBlackList.keySet()) {
-                fr.write(key + "=" + wordsBlackList.get(key) + "\n");
+                fr.write(key + SPLITERATOR + wordsBlackList.get(key) + "\n");
             }
         } catch (IOException e) {
             logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
@@ -108,7 +108,7 @@ public class WordService {
                 String line = reader.readLine();
                 cleanWordsCache();
                 while (line != null && !line.isEmpty()) {
-                    String[] values = line.split("=");
+                    String[] values = line.split(SPLITERATOR);
                     if (values.length == 2 &&
                             !wordsBlackList.containsKey(values[0]) //if there is no this value in black list of < than CAP
                             || wordsBlackList.get(values[0]) < CORRECT_ANSWERS_CAP) {
@@ -131,7 +131,7 @@ public class WordService {
                 String line = reader.readLine();
                 cleanBlackList();
                 while (line != null && !line.isEmpty()) {
-                    String[] values = line.split("=");
+                    String[] values = line.split(SPLITERATOR);
                     if (values.length == 2) {
                         wordsBlackList.put(values[0], Integer.parseInt(values[1]));
                     }
