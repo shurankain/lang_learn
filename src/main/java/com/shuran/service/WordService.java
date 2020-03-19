@@ -13,7 +13,8 @@ import java.util.Map;
 @Service
 public class WordService {
 
-    private Logger logger = LoggerFactory.getLogger(WordService.class);
+    public static final String SPLITERATOR = "=";
+    private final Logger logger = LoggerFactory.getLogger(WordService.class);
 
     private static final String DICTIONARY_FILE = "dictionary.txt";
     private static final String BLACK_LIST_FILE = "black_list.txt";
@@ -50,7 +51,7 @@ public class WordService {
 
         File file = new File(DICTIONARY_FILE);
         try (FileWriter fr = new FileWriter(file, true)) {
-            fr.write(word.getForeign() + "=" + word.getTranslation() + "\n");
+            fr.write(word.getForeign() + SPLITERATOR + word.getTranslation() + "\n");
         } catch (IOException e) {
             logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
         }
@@ -61,23 +62,22 @@ public class WordService {
 
         File file = new File(BLACK_LIST_FILE);
         try (FileWriter fr = new FileWriter(file, true)) {
-            fr.write(key + "=" + 1 + "\n");
+            fr.write(key + SPLITERATOR + 1 + "\n");
         } catch (IOException e) {
             logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void updateWholeBlackList() throws IOException {
         File file = new File(BLACK_LIST_FILE);
-        file.delete();
-        file.createNewFile();
-        try (FileWriter fr = new FileWriter(file, true)) {
-            for (String key : wordsBlackList.keySet()) {
-                fr.write(key + "=" + wordsBlackList.get(key));
+        if(file.delete() && file.createNewFile()){
+            try (FileWriter fr = new FileWriter(file, true)) {
+                for (String key : wordsBlackList.keySet()) {
+                    fr.write(key + SPLITERATOR + wordsBlackList.get(key));
+                }
+            } catch (IOException e) {
+                logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
             }
-        } catch (IOException e) {
-            logger.debug("Error save to file: {}", Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -107,7 +107,7 @@ public class WordService {
                 String line = reader.readLine();
                 cleanWordsCache();
                 while (line != null) {
-                    String[] values = line.split("=");
+                    String[] values = line.split(SPLITERATOR);
                     if (values.length == 2 &&
                             !wordsBlackList.containsKey(values[0]) //if there is no this value in black list of < than CAP
                             || wordsBlackList.get(values[0]) < CORRECT_ANSWERS_CAP) {
@@ -130,7 +130,7 @@ public class WordService {
                 String line = reader.readLine();
                 cleanBlackList();
                 while (line != null) {
-                    String[] values = line.split("=");
+                    String[] values = line.split(SPLITERATOR);
                     if (values.length == 2) {
                         wordsBlackList.put(values[0], Integer.parseInt(values[1]));
                     }

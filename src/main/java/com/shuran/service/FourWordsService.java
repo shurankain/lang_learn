@@ -13,7 +13,7 @@ public class FourWordsService {
 
     private static final Random RANDOM = new Random();
 
-    private WordService wordService;
+    private final WordService wordService;
 
     @Autowired
     public FourWordsService(WordService wordService) {

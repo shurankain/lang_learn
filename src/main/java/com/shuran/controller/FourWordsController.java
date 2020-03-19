@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FourWordsController {
 
     private static final String WORDS_DTO = "wordsDto";
-    private FourWordsService fourWordsService;
-    private WordService wordService;
+    private final FourWordsService fourWordsService;
+    private final WordService wordService;
 
     @Autowired
     public FourWordsController(FourWordsService fourWordsService, WordService wordService) {

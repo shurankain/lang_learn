@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class WordController {
 
-    private WordService wordService;
+    private final WordService wordService;
 
     @Autowired
     public WordController(WordService wordService) {
