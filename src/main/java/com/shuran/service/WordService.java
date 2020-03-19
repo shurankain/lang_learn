@@ -12,15 +12,15 @@ import java.util.Map;
 
 @Service
 public class WordService {
-
-    public static final String SPLITERATOR = "=";
     private final Logger logger = LoggerFactory.getLogger(WordService.class);
+
+    private Map<String, Integer> wordsBlackList = new HashMap<>();
+    private Map<String, String> wordsCache = new HashMap<>();
 
     private static final String DICTIONARY_FILE = "dictionary.txt";
     private static final String BLACK_LIST_FILE = "black_list.txt";
     private static final int CORRECT_ANSWERS_CAP = 3;
-    private Map<String, String> wordsCache = new HashMap<>();
-    private Map<String, Integer> wordsBlackList = new HashMap<>();
+    public static final String SPLITERATOR = "=";
 
     public WordService() {
         fillBlackListFromFile();
@@ -32,8 +32,7 @@ public class WordService {
     }
 
     public String processWordSaving(Word word) {
-        if (word == null || word.getForeign() == null ||
-                "".equals(word.getForeign().trim()) || "".equals(word.getTranslation().trim())) {
+        if (word == null || isNullOrEmpty(word.getForeign()) || isNullOrEmpty(word.getTranslation())) {
             return "Invalid value!";
         } else {
             fillDictCacheFromFile(); //reloads words on each adding.
@@ -44,6 +43,10 @@ public class WordService {
                 return "Added!";
             }
         }
+    }
+
+    public static boolean isNullOrEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 
     private void saveWordToDictionary(Word word) {
