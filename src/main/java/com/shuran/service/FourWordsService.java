@@ -39,18 +39,18 @@ public class FourWordsService {
                 words.add(extractedWord);
             }
         }
-        List<String> transalations = new ArrayList<>();
+        List<String> transalations2 = new ArrayList<>();
         fourWordsDto.setForeign(words.get(0).getForeign());
-        fourWordsDto.setTranslation(words.get(0).getTranslation());
+        fourWordsDto.setTranslation(String.valueOf(words.get(0).getId()));
         Collections.shuffle(words);
         if (ExerciseType.FT == exerciseType) {
-            words.forEach(w -> transalations.add(w.getTranslation()));
+            words.forEach(w -> transalations2.add(w.getTranslation()));
         }
         if (ExerciseType.TF == exerciseType) {
-            words.forEach(w -> transalations.add(w.getForeign()));
+            words.forEach(w -> transalations2.add(w.getForeign()));
         }
 
-        fourWordsDto.setOptions(transalations);
+        fourWordsDto.setOptions(transalations2);
         return fourWordsDto;
     }
 
