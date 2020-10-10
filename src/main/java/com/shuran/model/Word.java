@@ -1,4 +1,4 @@
-package com.shuran;
+package com.shuran.model;
 
 @SuppressWarnings("unused")
 public class Word {

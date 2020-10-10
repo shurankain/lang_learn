@@ -1,6 +1,6 @@
 package com.shuran.service;
 
-import com.shuran.Word;
+import com.shuran.model.Word;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

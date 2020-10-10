@@ -1,6 +1,6 @@
 package com.shuran.service;
 
-import com.shuran.Word;
+import com.shuran.model.Word;
 import com.shuran.model.ExerciseType;
 import com.shuran.model.FourWordsDto;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.shuran.controller;
 
-import com.shuran.Word;
+import com.shuran.model.Word;
 import com.shuran.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
