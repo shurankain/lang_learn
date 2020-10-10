@@ -49,6 +49,7 @@ public class FourWordsService {
         }
 
         fourWordsDto.setOptions(translations);
+        fourWordsDto.setOptions(translations);
         return fourWordsDto;
     }
 
